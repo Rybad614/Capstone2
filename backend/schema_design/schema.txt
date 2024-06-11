@@ -1,0 +1,48 @@
+Admin
+    admin_id(PK) - Unique identifier for each admin.
+    username - Username for the admin login.
+    password - Password for the admin login (hashed).
+    email - Email address of the admin.
+    created_at - Date & time of when the admin account was created.
+
+
+Members
+    member_id(PK) - Unique identifier for each member.
+    first_name - First name of the member.
+    password - Password for the member login (hashed).
+    email - Email address of the member.
+    admin_id(FK) - Foreign key linking to the 'admin_id'
+                   in the 'Admin' table, indicating which admin is responsible for the member.
+
+
+Calendar
+    event_id(PK) - Unique identifier for each calendar event.
+    title - Title of the event.
+    description - Description of the event.
+    event_date - Date of the event.
+    start_time - Start time of the event.
+    end_time - End time of the event.
+    User_id(FK) - Foreign key linking to the 'member_id' & 'admin_id'
+                  in the 'Members' & 'Admin' table, indicating which user is associated with the event.
+
+
+ChatGroups
+    chat_group_id(PK) - Unique identifier for each chat group.
+    group_name - Name of the chat group.
+    created_at - Date & time when the chat group was created.
+
+
+ChatParticipants
+    participant_id(PK) - Unique identifier for each participant record.
+    chat_group_id(FK) - Foreign key linking to the 'chat_group_id' in 'ChatGroups'.
+    user_id(FK) - Identifier for the user (could be an 'admin_id' or 'member_id').
+    user_type - Type of the user ('admin' or 'member') to distinguish the user's table.
+
+
+ChatMessages
+    message_id(PK) - Unique identifier for each message.
+    chat_group_id(FK) - Foreign key linking to the 'chat_group_id' in 'ChatGroups'.
+    sender_id(FK) - Identifier for the sender (could be an 'admin_id' or 'member_id').
+    sender_type - Type of the sender ('admin' or 'member') to distinguish the sender's table.
+    message_text - The text content of the message.
+    timestamp - Timestamp when the message was sent.
