@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "title": "Root Schema",
+  "type": "object",
+  "default": {},
+  "required": [
+      "calendar"
+  ],
+  "properties": {
+      "calendar": {
+          "title": "The calendar Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+              "id",
+              "title",
+              "description",
+              "eventDate",
+              "startTime",
+              "endTime",
+              "userId"
+          ],
+          "properties": {
+              "id": {
+                  "title": "The id Schema",
+                  "type": "number",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "title": {
+                  "title": "The title Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "Meetup"
+                  ]
+              },
+              "description": {
+                  "title": "The description Schema",
+                  "type": "object",
+                  "default": {},
+                  "required": [
+                      "condition",
+                      "activities",
+                      "announcements",
+                      "attendance"
+                  ],
+                  "properties": {
+                      "condition": {
+                          "title": "The condition Schema",
+                          "type": "string",
+                          "default": "",
+                          "examples": [
+                              "in/outdoor"
+                          ]
+                      },
+                      "activities": {
+                          "title": "The activities Schema",
+                          "type": "array",
+                          "default": [],
+                          "items": {
+                              "title": "A Schema",
+                              "type": "string",
+                              "examples": [
+                                  "Game night",
+                                  "Study session",
+                                  "Chat"
+                              ]
+                          },
+                          "examples": [
+                              ["Game night",
+                                  "Study session",
+                                  "Chat"
+                              ]
+                          ]
+                      },
+                      "announcements": {
+                          "title": "The announcements Schema",
+                          "type": "array",
+                          "default": [],
+                          "items": {
+                              "title": "A Schema",
+                              "type": "string",
+                              "examples": [
+                                  "Food provided",
+                                  "Purpose for meeting",
+                                  "Upcoming events"
+                              ]
+                          },
+                          "examples": [
+                              ["Food provided",
+                                  "Purpose for meeting",
+                                  "Upcoming events"
+                              ]
+                          ]
+                      },
+                      "attendance": {
+                          "title": "The attendance Schema",
+                          "type": "string",
+                          "default": "",
+                          "examples": [
+                              "Voluntary/Mandatory"
+                          ]
+                      }
+                  },
+                  "examples": [{
+                      "condition": "in/outdoor",
+                      "activities": [
+                          "Game night",
+                          "Study session",
+                          "Chat"
+                      ],
+                      "announcements": [
+                          "Food provided",
+                          "Purpose for meeting",
+                          "Upcoming events"
+                      ],
+                      "attendance": "Voluntary/Mandatory"
+                  }]
+              },
+              "eventDate": {
+                  "title": "The eventDate Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "2024-06-18"
+                  ]
+              },
+              "startTime": {
+                  "title": "The startTime Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "6:30PM"
+                  ]
+              },
+              "endTime": {
+                  "title": "The endTime Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "8:00PM"
+                  ]
+              },
+              "userId": {
+                  "title": "The userId Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "member1@email.com"
+                  ]
+              }
+          },
+          "examples": [{
+              "id": 1,
+              "title": "Meetup",
+              "description": {
+                  "condition": "in/outdoor",
+                  "activities": [
+                      "Game night",
+                      "Study session",
+                      "Chat"
+                  ],
+                  "announcements": [
+                      "Food provided",
+                      "Purpose for meeting",
+                      "Upcoming events"
+                  ],
+                  "attendance": "Voluntary/Mandatory"
+              },
+              "eventDate": "2024-06-18",
+              "startTime": "6:30PM",
+              "endTime": "8:00PM",
+              "userId": "member1@email.com"
+          }]
+      }
+  },
+  "examples": [{
+      "calendar": {
+          "id": 1,
+          "title": "Meetup",
+          "description": {
+              "condition": "in/outdoor",
+              "activities": [
+                  "Game night",
+                  "Study session",
+                  "Chat"
+              ],
+              "announcements": [
+                  "Food provided",
+                  "Purpose for meeting",
+                  "Upcoming events"
+              ],
+              "attendance": "Voluntary/Mandatory"
+          },
+          "eventDate": "2024-06-18",
+          "startTime": "6:30PM",
+          "endTime": "8:00PM",
+          "userId": "member1@email.com"
+      }
+  }]
+}

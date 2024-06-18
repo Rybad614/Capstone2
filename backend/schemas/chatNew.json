@@ -1,0 +1,389 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "title": "Root Schema",
+  "type": "object",
+  "default": {},
+  "required": [
+      "groupchat"
+  ],
+  "properties": {
+      "groupchat": {
+          "title": "The groupchat Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+              "id",
+              "groupName",
+              "createdAt",
+              "participants",
+              "messages"
+          ],
+          "properties": {
+              "id": {
+                  "title": "The id Schema",
+                  "type": "number",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "groupName": {
+                  "title": "The groupName Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "Team1"
+                  ]
+              },
+              "createdAt": {
+                  "title": "The createdAt Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "2024-06-18 18:30:21"
+                  ]
+              },
+              "participants": {
+                  "title": "The participants Schema",
+                  "type": "array",
+                  "default": [],
+                  "items": {
+                      "title": "A Schema",
+                      "type": "object",
+                      "required": [
+                          "participantId",
+                          "chatId",
+                          "userId",
+                          "userType"
+                      ],
+                      "properties": {
+                          "participantId": {
+                              "title": "The participantId Schema",
+                              "type": "number",
+                              "examples": [
+                                  1,
+                                  2,
+                                  3
+                              ]
+                          },
+                          "chatId": {
+                              "title": "The chatId Schema",
+                              "type": "number",
+                              "examples": [
+                                  1
+                              ]
+                          },
+                          "userId": {
+                              "title": "The userId Schema",
+                              "type": "string",
+                              "examples": [
+                                  "admin@email.com",
+                                  "member1@email.com",
+                                  "member2@email.com"
+                              ]
+                          },
+                          "userType": {
+                              "title": "The userType Schema",
+                              "type": "string",
+                              "examples": [
+                                  "Admin",
+                                  "Member"
+                              ]
+                          }
+                      },
+                      "examples": [{
+                          "participantId": 1,
+                          "chatId": 1,
+                          "userId": "admin@email.com",
+                          "userType": "Admin"
+                      },
+                      {
+                          "participantId": 2,
+                          "chatId": 1,
+                          "userId": "member1@email.com",
+                          "userType": "Member"
+                      },
+                      {
+                          "participantId": 3,
+                          "chatId": 1,
+                          "userId": "member2@email.com",
+                          "userType": "Member"
+                      }]
+                  },
+                  "examples": [
+                      [{
+                          "participantId": 1,
+                          "chatId": 1,
+                          "userId": "admin@email.com",
+                          "userType": "Admin"
+                      },
+                      {
+                          "participantId": 2,
+                          "chatId": 1,
+                          "userId": "member1@email.com",
+                          "userType": "Member"
+                      },
+                      {
+                          "participantId": 3,
+                          "chatId": 1,
+                          "userId": "member2@email.com",
+                          "userType": "Member"
+                      }]
+                  ]
+              },
+              "messages": {
+                  "title": "The messages Schema",
+                  "type": "array",
+                  "default": [],
+                  "items": {
+                      "title": "A Schema",
+                      "type": "object",
+                      "required": [
+                          "messageId",
+                          "chatId",
+                          "senderId",
+                          "senderType",
+                          "messageText",
+                          "timestamp"
+                      ],
+                      "properties": {
+                          "messageId": {
+                              "title": "The messageId Schema",
+                              "type": "number",
+                              "examples": [
+                                  1,
+                                  2,
+                                  3,
+                                  4
+                              ]
+                          },
+                          "chatId": {
+                              "title": "The chatId Schema",
+                              "type": "number",
+                              "examples": [
+                                  1
+                              ]
+                          },
+                          "senderId": {
+                              "title": "The senderId Schema",
+                              "type": "string",
+                              "examples": [
+                                  "admin@email.com",
+                                  "member1@email.com",
+                                  "member2@email.com"
+                              ]
+                          },
+                          "senderType": {
+                              "title": "The senderType Schema",
+                              "type": "string",
+                              "examples": [
+                                  "Admin",
+                                  "Member"
+                              ]
+                          },
+                          "messageText": {
+                              "title": "The messageText Schema",
+                              "type": "string",
+                              "examples": [
+                                  "Welcome, Team1!",
+                                  "Hello :)",
+                                  "Send me home plz :(",
+                                  "This is a WFH position... :|"
+                              ]
+                          },
+                          "timestamp": {
+                              "title": "The timestamp Schema",
+                              "type": "string",
+                              "examples": [
+                                  "2024-06-18 18:30:53",
+                                  "2024-06-18 18:32:03",
+                                  "2024-06-18 18:32:42",
+                                  "2024-06-18 18:35:10"
+                              ]
+                          }
+                      },
+                      "examples": [{
+                          "messageId": 1,
+                          "chatId": 1,
+                          "senderId": "admin@email.com",
+                          "senderType": "Admin",
+                          "messageText": "Welcome, Team1!",
+                          "timestamp": "2024-06-18 18:30:53"
+                      },
+                      {
+                          "messageId": 2,
+                          "chatId": 1,
+                          "senderId": "member1@email.com",
+                          "senderType": "Member",
+                          "messageText": "Hello :)",
+                          "timestamp": "2024-06-18 18:32:03"
+                      },
+                      {
+                          "messageId": 3,
+                          "chatId": 1,
+                          "senderId": "member2@email.com",
+                          "senderType": "Member",
+                          "messageText": "Send me home plz :(",
+                          "timestamp": "2024-06-18 18:32:42"
+                      },
+                      {
+                          "messageId": 4,
+                          "chatId": 1,
+                          "senderId": "admin@email.com",
+                          "senderType": "Admin",
+                          "messageText": "This is a WFH position... :|",
+                          "timestamp": "2024-06-18 18:35:10"
+                      }]
+                  },
+                  "examples": [
+                      [{
+                          "messageId": 1,
+                          "chatId": 1,
+                          "senderId": "admin@email.com",
+                          "senderType": "Admin",
+                          "messageText": "Welcome, Team1!",
+                          "timestamp": "2024-06-18 18:30:53"
+                      },
+                      {
+                          "messageId": 2,
+                          "chatId": 1,
+                          "senderId": "member1@email.com",
+                          "senderType": "Member",
+                          "messageText": "Hello :)",
+                          "timestamp": "2024-06-18 18:32:03"
+                      },
+                      {
+                          "messageId": 3,
+                          "chatId": 1,
+                          "senderId": "member2@email.com",
+                          "senderType": "Member",
+                          "messageText": "Send me home plz :(",
+                          "timestamp": "2024-06-18 18:32:42"
+                      },
+                      {
+                          "messageId": 4,
+                          "chatId": 1,
+                          "senderId": "admin@email.com",
+                          "senderType": "Admin",
+                          "messageText": "This is a WFH position... :|",
+                          "timestamp": "2024-06-18 18:35:10"
+                      }]
+                  ]
+              }
+          },
+          "examples": [{
+              "id": 1,
+              "groupName": "Team1",
+              "createdAt": "2024-06-18 18:30:21",
+              "participants": [{
+                  "participantId": 1,
+                  "chatId": 1,
+                  "userId": "admin@email.com",
+                  "userType": "Admin"
+              },
+              {
+                  "participantId": 2,
+                  "chatId": 1,
+                  "userId": "member1@email.com",
+                  "userType": "Member"
+              },
+              {
+                  "participantId": 3,
+                  "chatId": 1,
+                  "userId": "member2@email.com",
+                  "userType": "Member"
+              }],
+              "messages": [{
+                  "messageId": 1,
+                  "chatId": 1,
+                  "senderId": "admin@email.com",
+                  "senderType": "Admin",
+                  "messageText": "Welcome, Team1!",
+                  "timestamp": "2024-06-18 18:30:53"
+              },
+              {
+                  "messageId": 2,
+                  "chatId": 1,
+                  "senderId": "member1@email.com",
+                  "senderType": "Member",
+                  "messageText": "Hello :)",
+                  "timestamp": "2024-06-18 18:32:03"
+              },
+              {
+                  "messageId": 3,
+                  "chatId": 1,
+                  "senderId": "member2@email.com",
+                  "senderType": "Member",
+                  "messageText": "Send me home plz :(",
+                  "timestamp": "2024-06-18 18:32:42"
+              },
+              {
+                  "messageId": 4,
+                  "chatId": 1,
+                  "senderId": "admin@email.com",
+                  "senderType": "Admin",
+                  "messageText": "This is a WFH position... :|",
+                  "timestamp": "2024-06-18 18:35:10"
+              }]
+          }]
+      }
+  },
+  "examples": [{
+      "groupchat": {
+          "id": 1,
+          "groupName": "Team1",
+          "createdAt": "2024-06-18 18:30:21",
+          "participants": [{
+              "participantId": 1,
+              "chatId": 1,
+              "userId": "admin@email.com",
+              "userType": "Admin"
+          },
+          {
+              "participantId": 2,
+              "chatId": 1,
+              "userId": "member1@email.com",
+              "userType": "Member"
+          },
+          {
+              "participantId": 3,
+              "chatId": 1,
+              "userId": "member2@email.com",
+              "userType": "Member"
+          }],
+          "messages": [{
+              "messageId": 1,
+              "chatId": 1,
+              "senderId": "admin@email.com",
+              "senderType": "Admin",
+              "messageText": "Welcome, Team1!",
+              "timestamp": "2024-06-18 18:30:53"
+          },
+          {
+              "messageId": 2,
+              "chatId": 1,
+              "senderId": "member1@email.com",
+              "senderType": "Member",
+              "messageText": "Hello :)",
+              "timestamp": "2024-06-18 18:32:03"
+          },
+          {
+              "messageId": 3,
+              "chatId": 1,
+              "senderId": "member2@email.com",
+              "senderType": "Member",
+              "messageText": "Send me home plz :(",
+              "timestamp": "2024-06-18 18:32:42"
+          },
+          {
+              "messageId": 4,
+              "chatId": 1,
+              "senderId": "admin@email.com",
+              "senderType": "Admin",
+              "messageText": "This is a WFH position... :|",
+              "timestamp": "2024-06-18 18:35:10"
+          }]
+      }
+  }]
+}

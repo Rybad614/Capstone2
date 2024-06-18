@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "title": "Root Schema",
+  "type": "object",
+  "default": {},
+  "required": [
+      "member"
+  ],
+  "properties": {
+      "member": {
+          "title": "The member Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+              "id",
+              "firstName",
+              "password",
+              "email",
+              "adminId"
+          ],
+          "properties": {
+              "id": {
+                  "title": "The id Schema",
+                  "type": "number",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              },
+              "firstName": {
+                  "title": "The firstName Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "First"
+                  ]
+              },
+              "password": {
+                  "title": "The password Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "pa22w0rd"
+                  ]
+              },
+              "email": {
+                  "title": "The email Schema",
+                  "type": "string",
+                  "default": "",
+                  "examples": [
+                      "example@email.com"
+                  ]
+              },
+              "adminId": {
+                  "title": "The adminId Schema",
+                  "type": "number",
+                  "default": 0,
+                  "examples": [
+                      1
+                  ]
+              }
+          },
+          "examples": [{
+              "id": 1,
+              "firstName": "First",
+              "password": "pa22w0rd",
+              "email": "example@email.com",
+              "adminId": 1
+          }]
+      }
+  },
+  "examples": [{
+      "member": {
+          "id": 1,
+          "firstName": "First",
+          "password": "pa22w0rd",
+          "email": "example@email.com",
+          "adminId": 1
+      }
+  }]
+}
