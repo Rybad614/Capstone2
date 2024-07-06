@@ -6,6 +6,7 @@ CREATE DATABASE only_family;
 \connect only_family
 
 \i otf-schema.sql
+\i otf-seed.sql
 
 \echo 'Delete and recreate only_family_test db?'
 \prompt 'Return for yes or control-C to cancel > ' foo

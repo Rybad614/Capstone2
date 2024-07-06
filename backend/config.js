@@ -2,11 +2,19 @@
 
 require("dotenv").config();
 require("colors");
+const { default: Nylas } = require("nylas");
 
 const SECRET_KEY = process.env.SECRET_KEY || "secret-dev";
-const API_KEY = "nyk_v0_2hx35Glk43VPcbuG0e207ZiPKNHbV60h6eugfnhYL1clGrdvTJ56USlOSxpj38Cp";
-const GRANT_ID = "2bd1e582-158e-410c-a583-2c79c903437a";
+const GRANT_ID = process.env.ICLOUD_GRANT || process.env.GMAIL_GRANT;
 const PORT = +process.env.PORT || 3001;
+const API_KEY = process.env.API_KEY;
+
+const nylas = new Nylas({
+  apiKey: API_KEY,
+  apiUri: process.env.API_URI
+})
+
+
 
 // Use dev database, testing database, or via env var, production database
 function getDatabaseUri() {
@@ -28,10 +36,11 @@ console.log("Database:".yellow, getDatabaseUri());
 console.log("---");
 
 module.exports = {
+  nylas,
   SECRET_KEY,
-  PORT,
-  BCRYPT_WORK_FACTOR,
-  API_KEY,
   GRANT_ID,
+  PORT,
+  API_KEY,
+  BCRYPT_WORK_FACTOR,
   getDatabaseUri,
 };
