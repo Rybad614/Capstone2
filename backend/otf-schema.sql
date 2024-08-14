@@ -21,12 +21,16 @@ CREATE TABLE calendars (
 CREATE TABLE events (
   event_id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,
-  description JSONB NOT NULL,
+  condition TEXT NOT NULL,
+  activities TEXT NOT NULL,
+  attendance TEXT NOT NULL,
+  announcements TEXT NOT NULL,
   event_date TEXT NOT NULL,
   start_time TEXT NOT NULL,
   end_time TEXT NOT NULL,
   calendar_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
+  e_token TEXT NOT NULL,
   FOREIGN KEY (calendar_id) REFERENCES calendars(calendar_id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
@@ -40,10 +44,14 @@ CREATE TABLE groupchats (
 );
 
 CREATE TABLE participants (
-  participant_id SERIAL PRIMARY KEY,
-  chat_group_id INTEGER NOT NULL REFERENCES groupchats(chat_group_id) ON DELETE CASCADE,
-  user_id INTEGER NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+  participant_id SERIAL NOT NULL,
+  user_id INTEGER,
+  calendar_id INTEGER,
+  chat_group_id INTEGER,
+  PRIMARY KEY (user_id, calendar_id, chat_group_id),
+  FOREIGN KEY (chat_group_id) REFERENCES groupchats(chat_group_id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (calendar_id) REFERENCES calendars(calendar_id) ON DELETE CASCADE
 );
 
 CREATE TABLE messages (

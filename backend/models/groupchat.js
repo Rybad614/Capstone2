@@ -21,6 +21,45 @@ class GroupChat {
 
     return chat;
   }
+
+  /** */
+  static async sendMessage({ chat_group_id, sender_id, message_text, timestamp }) {
+    const result = await db.query(
+            `INSERT INTO messages
+             (chat_group_id,
+              sender_id,
+              message_text,
+              timestamp)
+              VALUES ($1, $2, $3, $4)
+              RETURNING *`,
+              [
+                chat_group_id,
+                sender_id,
+                message_text,
+                timestamp,
+              ],
+    );
+    const message = result.rows[0];
+
+    return message;
+  }
+
+  /** */
+  static async getChat(user_id) {
+    const result = await db.query(
+            `SELECT g.chat_group_id, g.group_name, m.sender_id, m.message_text, m.timestamp, u.user_type, u.email
+             FROM groupchats g
+             JOIN messages m ON g.chat_group_id = m.chat_group_id
+             JOIN participants p ON g.chat_group_id = p.chat_group_id
+             JOIN users u ON m.sender_id = u.user_id
+             WHERE p.user_id = $1`,
+             [user_id],
+    );
+    const chat = result.rows;
+
+    return chat;
+  }
+
   /** */
   static async delete(chat_group_id) {
     const result = await db.query(

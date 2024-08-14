@@ -28,9 +28,9 @@ class User {
     const user = result.rows[0];
 
     if (user) {
-      const isValid = await bcrypt.compare(password, user.passowrd);
+      const isValid = await bcrypt.compare(password, user.password);
       if (isValid === true) {
-        delete user.passowrd;
+        delete user.password;
         return user;
       }
     }
@@ -39,7 +39,7 @@ class User {
 
 
   /** */
-  static async register({ user_type, username, first_name, password, email }) {
+  static async register({ username, password, email }) {
     const duplicateCheck = await db.query(
       `SELECT email
        FROM users
@@ -64,9 +64,9 @@ class User {
            VALUES ($1, $2, $3, $4, $5, $6)
            RETURNING user_type, username, first_name, password, email, created_at`,
         [
-          user_type,
+          "admin",
           username,
-          first_name,
+          null,
           hashedPassword,
           email,
           new Date().toLocaleString(),
@@ -82,6 +82,7 @@ class User {
       `SELECT user_type,
               username,
               first_name,
+              user_id,
               email
        FROM users
        WHERE email = $1`,
@@ -133,6 +134,45 @@ class User {
     const user = result.rows[0];
 
     if (!user) throw new NotFoundError(`${email} does not match a user.`)
+  }
+
+  /** */
+  static async addMember({ email, password }) {
+    const duplicateCheck = await db.query(
+      `SELECT email
+       FROM users
+       WHERE email = $1`,
+      [email],
+    );
+
+    if (duplicateCheck.rows[0]) {
+      throw new BadRequestError(`Account under ${email} already exists.`);
+    }
+
+    const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
+
+    const result = await db.query(
+          `INSERT INTO users
+           (user_type,
+            username,
+            first_name,
+            password,
+            email,
+            created_at)
+           VALUES ($1, $2, $3, $4, $5, $6)
+           RETURNING user_id, user_type, username, first_name, password, email, created_at`,
+        [
+          "member",
+          null,
+          null,
+          hashedPassword,
+          email,
+          new Date().toLocaleString(),
+        ],
+    );
+    const member = result.rows;
+
+    return member;
   }
 }
 

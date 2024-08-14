@@ -9,7 +9,7 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 const nylasCalendar = nylas.calendars;
 
 class Calendar {
-  
+
   /** */
   static async create({ name, description, user_grant, user_id }) {
     try {
@@ -19,26 +19,26 @@ class Calendar {
           name: name,
         }
       })
-    
+
       console.log('CREATED Calendar:', calendar)
     } catch (error) {
       console.error('Error creating calendar:', error)
     }
-     
+
     const result = await db.query(
-          `INSERT INTO calendars
+      `INSERT INTO calendars
            (name,
             description,
             user_grant,
             user_id)
            VALUES ($1, $2, $3, $4)
            RETURNING name, description, user_id`,
-           [
-            name,
-            description,
-            user_grant,
-            user_id,
-           ],
+      [
+        name,
+        description,
+        user_grant,
+        user_id,
+      ],
     );
     const createCalendar = result.rows[0];
 
@@ -46,30 +46,32 @@ class Calendar {
   }
   /** */
   static async view(user_id) {
-    
+
     const user_grant = await db.query(
-              `SELECT user_grant
+      `SELECT user_grant
                FROM calendars
                WHERE user_id = $1`,
-              [user_id],
+      [user_id],
     );
 
-    try {
-      const calendar = await nylasCalendar.list({
-        identifier: user_grant.rows[0].user_grant,
-      })
-      console.log('CALENDAR', calendar)
-    } catch (err) {
-      console.error('Error fetching calendar:', err)
+    if (user_grant) {
+      try {
+        const calendar = await nylasCalendar.list({
+          identifier: user_grant.rows[0].user_grant,
+        })
+        console.log('CALENDAR', calendar)
+      } catch (err) {
+        console.error('Error fetching calendar:', err)
+      }
     }
     const result = await db.query(
-          `SELECT calendar_id,
+      `SELECT calendar_id,
                   name,
                   description,
                   user_id
            FROM calendars
            WHERE user_id = $1`,
-           [user_id],
+      [user_id],
     );
     const allCalendars = result.rows;
 
@@ -84,7 +86,7 @@ class Calendar {
       [user_id],
     );
 
-    const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`,{
+    const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`, {
       headers: {
         'Authorization': `Bearer ${API_KEY}`
       }
@@ -112,19 +114,19 @@ class Calendar {
       console.error('Error updating calendar:', err)
     }
 
-    
 
-      const querySql = `UPDATE calendars
+
+    const querySql = `UPDATE calendars
                         SET ${setCols}
                         WHERE calendar_id = ${calendarVarIdx}
                         RETURNING calendar_id,
                                   name,
                                   description`;
-      const result = await db.query(querySql, [...values, calendar_id]);
-      const calendar = result.rows[0];
-      
-      if (!calendar) throw new NotFoundError(`calendar at ${calendar_id} does not exist.`);
-      return calendar;
+    const result = await db.query(querySql, [...values, calendar_id]);
+    const calendar = result.rows[0];
+
+    if (!calendar) throw new NotFoundError(`calendar at ${calendar_id} does not exist.`);
+    return calendar;
   }
   /** */
   static async delete(user_id, calendar_id) {
@@ -135,7 +137,7 @@ class Calendar {
       [user_id],
     );
 
-    const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`,{
+    const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`, {
       headers: {
         'Authorization': `Bearer ${API_KEY}`
       }
@@ -153,11 +155,11 @@ class Calendar {
     }
 
     const result = await db.query(
-            `DELETE 
+      `DELETE 
              FROM calendars
              WHERE calendar_id = $1
              RETURNING calendar_id, user_id`,
-          [calendar_id],  
+      [calendar_id],
     );
     const calendar = result.rows[0];
 

@@ -8,7 +8,7 @@ const router = new express.Router();
 router.post("/", async (req, res, next) => {
   try {
     const event = await Event.create(req.body);
-    return res.status(201).json({ event });
+    return res.status(201).json(event);
   } catch (err) {
     console.error("Error creating event:");
     next(err);
@@ -32,9 +32,9 @@ router.patch("/:user_id/:calendar_id", async (req, res, next) => {
     next(err);
   }
 });
-router.delete("/:user_id/:event_id", async (req, res, next) => {
+router.delete("/:user_id/:e_token/del", async (req, res, next) => {
   try {
-    const event = await Event.delete(req.params.user_id, req.params.event_id);
+    const event = await Event.delete(req.params.user_id, req.params.e_token);
     return res.json({ DELETED: event });
   } catch (err) {
     console.error("Error trying DELETE event:");

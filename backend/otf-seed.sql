@@ -16,9 +16,9 @@ VALUES (1, 'Team1', 'TEAM 1 ONLY', 'edd98fe2-2fd0-46c0-9b01-31fa144e14a1', 1),
        (2, 'Team2', 'TEAM 2 ONLY', '2bd1e582-158e-410c-a583-2c79c903437a', 2);
 
 -- Insert data into events table
-INSERT INTO events (event_id, title, description, event_date, start_time, end_time, calendar_id, user_id)
-VALUES (1, 'First Event', '{"condition": "Outdoor", "activities": ["corn hole", "tag"], "announcements": ["none"], "attendance": "voluntary"}', '2024-07-05', '2024-07-05 18:30:00', '2024-07-05 20:00:00', 2, 2),
-       (2, 'Second Event', '{"condition": "Indoor", "activities": ["spades", "beer pong"], "announcements": ["Next to come"], "attendance": "mandatory"}', '2024-08-25', '2024-08-25 20:30:00', '2024-08-25 22:00:00', 1, 1);
+INSERT INTO events (event_id, title, condition, activities, attendance, announcements, event_date, start_time, end_time, calendar_id, user_id, e_token)
+VALUES (1, 'First Event', 'Outdoor', '"corn hole", "tag"', 'voluntary', '"none"', '7/5/2024', '6:30:00 PM', '8:00:00 PM', 2, 2, 1722630043442),
+       (2, 'Second Event', 'Indoor', '"spades", "beer pong"', 'mandatory', '"Next to come"', '8/25/2024', '8:30:00 PM', '10:00:00 PM', 1, 1, 1722630043447);
 
 -- Insert data into groupchats table
 INSERT INTO groupchats (chat_group_id, group_name, created_by, created_at)
@@ -27,15 +27,15 @@ VALUES (1, 'Team1', 1, '2024-06-18 18:30:21'),
        (3, 'Team3', 2, '2024-06-18 20:30:44');
 
 -- Insert data into participants table
-INSERT INTO participants (participant_id, chat_group_id, user_id)
-VALUES (1, 1, 1),
-       (2, 1, 5),
-       (3, 1, 6),
-       (4, 2, 2),
-       (5, 2, 3),
-       (6, 2, 4),
-       (7, 3, 2),
-       (8, 3, 4);
+INSERT INTO participants (participant_id, calendar_id, user_id, chat_group_id)
+VALUES (1, 1, 1, 1),
+       (2, 1, 5, 1),
+       (3, 1, 6, 1),
+       (4, 2, 2, 2),
+       (5, 2, 3, 2),
+       (6, 2, 4, 2),
+       (7, 2, 2, 3),
+       (8, 2, 4, 3);
 
 -- Insert data into messages table
 INSERT INTO messages (message_id, chat_group_id, sender_id, message_text, timestamp)

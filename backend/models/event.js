@@ -18,7 +18,7 @@ const nylasEvent = nylas.events;
 
 class Event {
   /** */
-  static async create({ title, description, day, month, year, from, until, calendar_id, user_id }) {
+  static async create({ title, condition, activities, attendance, announcements, day, month, year, from, until, calendar_id, user_id, e_token }) {
     const EVENT = [
       new Date(`${day} ${month} ${year} ${from}:00 UTC-04:00`),
       new Date(`${day} ${month} ${year} ${until}:00 UTC-04:00`)
@@ -31,31 +31,33 @@ class Event {
       [user_id],
     );
 
-    const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`,{
-      headers: {
-        'Authorization': `Bearer ${API_KEY}`
+    if (user_grant) {
+      const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`, {
+        headers: {
+          'Authorization': `Bearer ${API_KEY}`
+        }
+      });
+
+      try {
+        const event = await nylasEvent.create({
+          identifier: user_grant.rows[0].user_grant,
+          requestBody: {
+            title: title,
+            description: condition,
+            when: {
+              startTime: EVENT[0].getTime() / 1000,
+              endTime: EVENT[1].getTime() / 1000,
+            }
+          },
+          queryParams: {
+            calendarId: apiCall.data.data[0].id,
+          },
+        })
+
+        console.log('EVENT:', event)
+      } catch (err) {
+        console.error('Error creating event:', err);
       }
-    });
-
-    try {
-      const event = await nylasEvent.create({
-        identifier: user_grant.rows[0].user_grant,
-        requestBody: {
-          title: title,
-          description: JSON.stringify(description),
-          when: {
-            startTime: EVENT[0].getTime()/1000,
-            endTime: EVENT[1].getTime()/1000,
-          }
-        },
-        queryParams: {
-          calendarId: apiCall.data.data[0].id,
-        },
-      })
-
-      console.log('EVENT:', event)
-    } catch (err) {
-      console.error('Error creating event:', err);
     }
 
 
@@ -64,25 +66,33 @@ class Event {
     const end_time = EVENT.toLocaleString().split(",")[3];
 
     const result = await db.query(
-            `INSERT INTO events
+      `INSERT INTO events
              (title,
-              description,
-              event_date,
-              start_time,
-              end_time,
-              calendar_id,
-              user_id)
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
-            RETURNING title, event_date, calendar_id`,
-            [
-              title,
-              description,
+              condition,
+              activities,
+              attendance,
+              announcements,
               event_date,
               start_time,
               end_time,
               calendar_id,
               user_id,
-            ],
+              e_token)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+            RETURNING *`,
+      [
+        title,
+        condition,
+        activities,
+        attendance,
+        announcements,
+        event_date,
+        start_time,
+        end_time,
+        calendar_id,
+        user_id,
+        e_token,
+      ],
     );
     const createEvent = result.rows[0];
 
@@ -97,33 +107,31 @@ class Event {
       [user_id],
     );
 
-    const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`,{
-      headers: {
-        'Authorization': `Bearer ${API_KEY}`
-      }
-    });
-
-    try {
-      const events = await nylasEvent.list({
-        identifier: user_grant.rows[0].user_grant,
-        queryParams: {
-          calendarId: apiCall.data.data[0].id,
+    if (user_grant) {
+      const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`, {
+        headers: {
+          'Authorization': `Bearer ${API_KEY}`
         }
-      })
+      });
 
-      console.log("EVENTS", events)
-    } catch (err) {
-      console.error('Error fetching events', err)
+      try {
+        const events = await nylasEvent.list({
+          identifier: user_grant.rows[0].user_grant,
+          queryParams: {
+            calendarId: apiCall.data.data[0].id,
+          }
+        })
+
+        console.log("EVENTS", events)
+      } catch (err) {
+        console.error('Error fetching events', err)
+      }
     }
     const result = await db.query(
-          `SELECT title,
-                  description,
-                  event_date,
-                  start_time,
-                  end_time
-           FROM events
-           WHERE calendar_id = $1`,
-           [calendar_id],
+      `SELECT *
+        FROM events
+        WHERE calendar_id = $1`,
+      [calendar_id],
     );
     const allEvents = result.rows;
 
@@ -138,12 +146,12 @@ class Event {
       [user_id],
     );
 
-    const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`,{
+    const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`, {
       headers: {
         'Authorization': `Bearer ${API_KEY}`
       }
     });
-    const apiCall2 = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/events?calendar_id=${apiCall.data.data[0].id}`,{
+    const apiCall2 = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/events?calendar_id=${apiCall.data.data[0].id}`, {
       headers: {
         'Authorization': `Bearer ${API_KEY}`
       }
@@ -167,7 +175,7 @@ class Event {
         requestBody: {
           title: data.title,
           description: JSON.stringify(data.description),
-          },
+        },
         queryParams: {
           calendarId: apiCall.data.data[0].id,
           notifyParticipants: false
@@ -186,14 +194,14 @@ class Event {
                         RETURNING event_id,
                                   title,
                                   start_time`;
-      const result = await db.query(querySql, [...values, calendar_id]);
-      const event = result.rows[0];
-      
-      if (!event) throw new NotFoundError(`calendar at ${calendar_id} does not exist.`);
-      return event;
+    const result = await db.query(querySql, [...values, calendar_id]);
+    const event = result.rows[0];
+
+    if (!event) throw new NotFoundError(`calendar at ${calendar_id} does not exist.`);
+    return event;
   }
   /** */
-  static async delete(user_id, event_id) {
+  static async delete(user_id, e_token) {
     const user_grant = await db.query(
       `SELECT user_grant
        FROM calendars
@@ -201,40 +209,43 @@ class Event {
       [user_id],
     );
 
-    const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`,{
-      headers: {
-        'Authorization': `Bearer ${API_KEY}`
-      }
-    });
-    const apiCall2 = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/events?calendar_id=${apiCall.data.data[0].id}`,{
-      headers: {
-        'Authorization': `Bearer ${API_KEY}`
-      }
-    });
+    if (user_grant) {
+      const apiCall = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/calendars?select=id`, {
+        headers: {
+          'Authorization': `Bearer ${API_KEY}`
+        }
+      });
+      const apiCall2 = await axios.get(`https://api.us.nylas.com/v3/grants/${user_grant.rows[0].user_grant}/events?calendar_id=${apiCall.data.data[0].id}`, {
+        headers: {
+          'Authorization': `Bearer ${API_KEY}`
+        }
+      });
 
-    try {
-      const event = await nylasEvent.destroy({
-        identifier: user_grant.rows[0].user_grant,
-        eventId: apiCall2.data.data[0].id,
-        queryParams: {
-          calendarId: apiCall.data.data[0].id,
-        },
-      })
+      try {
+        const event = await nylasEvent.destroy({
+          identifier: user_grant.rows[0].user_grant,
+          eventId: apiCall2.data.data[0].id,
+          queryParams: {
+            calendarId: apiCall.data.data[0].id,
+          },
+        })
 
-      console.log('event DELETED:', event);
-    } catch (err) {
-      console.error('Error deleting event:', err)
+        console.log('event DELETED:', event);
+      } catch (err) {
+        console.error('Error deleting event:', err)
+      }
     }
 
     const result = await db.query(
-            `DELETE
+      `DELETE
              FROM events
-             WHERE event_id = $1
+             WHERE user_id = $1
+             AND e_token = $2
              RETURNING user_id, title, calendar_id`,
-          [event_id],
+      [user_id, e_token],
     );
     const event = result.rows[0];
-    
+
     if (!event) throw new NotFoundError('Event does not exist.');
 
     return event;

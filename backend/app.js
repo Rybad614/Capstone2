@@ -10,6 +10,7 @@ const usersRoutes = require("./routes/users");
 const calendarsRoutes = require("./routes/calendars");
 const eventsRoutes = require("./routes/events");
 const chatsRoutes = require("./routes/groupchats");
+const participantRoutes = require("./routes/participants");
 
 const morgan = require("morgan");
 
@@ -24,6 +25,7 @@ app.use("/users", usersRoutes);
 app.use("/calendars", calendarsRoutes);
 app.use("/events", eventsRoutes);
 app.use("/groupchats", chatsRoutes);
+app.use("/participants", participantRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {

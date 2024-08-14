@@ -11,6 +11,22 @@ router.post("/create", async (req, res, next) => {
     return next(err);
   }
 });
+router.post("/send", async (req, res, next) => {
+  try {
+    const message = await GroupChat.sendMessage(req.body);
+    return res.status(201).json(message);
+  } catch (err) {
+    return next(err);
+  }
+});
+router.get("/:user_id", async (req, res, next) => {
+  try {
+    const chats = await GroupChat.getChat(req.params.user_id);
+    return res.json(chats);
+  } catch (err) {
+    return next(err);
+  }
+});
 router.delete("/:chat_id", async (req, res, next) => {
   try {
     const chat = await GroupChat.delete(req.params.chat_id);

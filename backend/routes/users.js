@@ -39,5 +39,13 @@ router.delete("/:email", async function (req, res, next) {
     return next(err);
   }
 });
+router.post("/", async function (req, res, next) {
+  try {
+    const member = await User.addMember(req.body);
+    return res.status(201).json(member);
+  } catch (err) {
+    return next(err);
+  }
+})
 
 module.exports = router;
