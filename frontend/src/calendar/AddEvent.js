@@ -67,6 +67,7 @@ function AddEvent({handleSubmit, handleChange, formData, editingEvent}) {
           <label htmlFor="day">Day:</label>
           <input
             name="day"
+            className="form-control"
             defaultValue={new Date().getDate()}
             onChange={handleChange}
           />
@@ -75,6 +76,7 @@ function AddEvent({handleSubmit, handleChange, formData, editingEvent}) {
           <label htmlFor="month">Month:</label>
           <select
             name="month"
+            className="form-control"
             value={formData.month}
             onChange={handleChange}
           >
@@ -96,6 +98,7 @@ function AddEvent({handleSubmit, handleChange, formData, editingEvent}) {
           <label htmlFor="year">Year:</label>
           <input
             name="year"
+            className="form-control"
             value={formData.year}
             onChange={handleChange}
           />
@@ -104,6 +107,7 @@ function AddEvent({handleSubmit, handleChange, formData, editingEvent}) {
           <label htmlFor="start-time">Start Time:</label>
           <input
             name="from"
+            className="form-control"
             value={formData.from}
             onChange={handleChange}
           />
@@ -112,6 +116,7 @@ function AddEvent({handleSubmit, handleChange, formData, editingEvent}) {
           <label htmlFor="end-time">End Time:</label>
           <input
             name="until"
+            className="form-control"
             value={formData.until}
             onChange={handleChange}
           />
@@ -120,6 +125,7 @@ function AddEvent({handleSubmit, handleChange, formData, editingEvent}) {
           <label htmlFor="calendar-id">Calendar ID:</label>
           <input
             name="calendar_id"
+            className="form-control"
             value={formData.calendar_id}
             onChange={handleChange}
           />
@@ -128,11 +134,12 @@ function AddEvent({handleSubmit, handleChange, formData, editingEvent}) {
           <label htmlFor="user-id">User ID:</label>
           <input
             name="user-id"
+            className="form-control"
             value={formData.user_id}
             disabled
           />
         </section>
-        <button type="submit" onSubmit={handleSubmit}>
+        <button type="submit" class="btn btn-primary" onSubmit={handleSubmit}>
           {editingEvent ? "Update" : "Add Event"}
         </button>
       </form>

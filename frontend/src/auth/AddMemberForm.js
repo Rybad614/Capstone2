@@ -79,92 +79,98 @@ function AddMemberForm({ addMember }) {
 
   return (
     <>
-      <h1>Add User(s):</h1>
-      <main className="add-member-container">
-        <div className="card">
-          <article className="card-body">
-            <form onSubmit={handleSubmit}>
-              <section className="form-group">
-                <label>CalendarID:</label>
-                <input
-                  type="text"
-                  name="calendar-id"
-                  className="form-control"
-                  defaultValue={userCalendars.calendar[0].calendar_id}
-                  disabled
-                />
-              </section>
-              <section className="form-group">
-                <label>ChatID:</label>
-                <input
-                  type="text"
-                  name="chat-id"
-                  className="form-control"
-                  defaultValue={userCalendars.calendar[0].calendar_id}
-                  disabled
-                />
-              </section>
-              <section className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  value={passwordData.password}
-                  onChange={handlePasswordChange}
-                />
-              </section>
-              <section className="form-group">
-                <label>Members</label>
-                {memberList.map((singleMember, index) => (
-                  <div key={index} className="members">
-                    <section className="first-division">
-                      <input
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        value={singleMember.email}
-                        onChange={(e) => handleMemberChange(e, index)}
-                      />
-                      {memberList.length - 1 === index && memberList.length < 4 &&
-                        (
-                          <button type="button" className="btn btn-secondary btn-sm col-12"
-                            onClick={handleMemberAdd}
-                          >
-                            <span>Add Member</span>
-                          </button>
-                        )}
-                    </section>
-                    <section className="second-division">
-                      {memberList.length > 1 &&
-                        (
-                          <button type="button" className="remove-btn"
-                            onClick={() => handleMemberRemove(index)}
-                          >
-                            <span>Remove</span>
-                          </button>
-                        )}
-                    </section>
-                  </div>
-                ))}
-              </section>
+      <div className="add-member-page">
+        <div className="add-member-wrapper">
+          <main className="add-member-container">
+            <div className="add-member-header">
+              <h1 id="add-member-title">Add User(s):</h1>
+            </div>
+            <div className="card">
+              <article className="card-body">
+                <form onSubmit={handleSubmit}>
+                  <section className="form-group">
+                    <label>CalendarID:</label>
+                    <input
+                      type="text"
+                      name="calendar-id"
+                      className="form-control"
+                      defaultValue={userCalendars.calendar[0].calendar_id}
+                      disabled
+                    />
+                  </section>
+                  <section className="form-group">
+                    <label>ChatID:</label>
+                    <input
+                      type="text"
+                      name="chat-id"
+                      className="form-control"
+                      defaultValue={userCalendars.calendar[0].calendar_id}
+                      disabled
+                    />
+                  </section>
+                  <section className="form-group">
+                    <label>Password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      className="form-control"
+                      value={passwordData.password}
+                      onChange={handlePasswordChange}
+                    />
+                  </section>
+                  <section className="form-group">
+                    <label>Members</label>
+                    {memberList.map((singleMember, index) => (
+                      <div key={index} className="members-add">
+                        <section className="first-division">
+                          <input
+                            type="email"
+                            name="email"
+                            className="form-control"
+                            value={singleMember.email}
+                            onChange={(e) => handleMemberChange(e, index)}
+                          />
+                          {memberList.length - 1 === index && memberList.length < 4 &&
+                            (
+                              <button type="button" className="btn btn-secondary btn-sm col-12"
+                                onClick={handleMemberAdd}
+                              >
+                                <span>Add Member</span>
+                              </button>
+                            )}
+                        </section>
+                        <section className="second-division">
+                          {memberList.length > 1 &&
+                            (
+                              <button type="button" className="remove-btn"
+                                onClick={() => handleMemberRemove(index)}
+                              >
+                                <span>Remove</span>
+                              </button>
+                            )}
+                        </section>
+                      </div>
+                    ))}
+                  </section>
 
 
-              {formErrors.length
-                ? <Alert type="danger" messages={formErrors} />
-                : null
-              }
-              <button
-                type="submit"
-                className="btn btn-primary"
-                onSubmit={handleSubmit}
-              >
-                ADD MEMBERS
-              </button>
-            </form>
-          </article>
+                  {formErrors.length
+                    ? <Alert type="danger" messages={formErrors} />
+                    : null
+                  }
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onSubmit={handleSubmit}
+                  >
+                    ADD MEMBERS
+                  </button>
+                </form>
+              </article>
+            </div>
+          </main>
         </div>
-      </main>
+      </div>
     </>
   )
 }

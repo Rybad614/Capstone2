@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 
+import './Groupchats.css'
 
 function Groupchats() {
   const { currentUser, associatedUsers } = useContext(UserContext);
@@ -20,7 +21,7 @@ function Groupchats() {
       <h3>GroupChats:</h3>
       {chats.map((chat, idx) => (
         <div key={idx}>
-          <Link to={link + chat.chat_group_id}>{chat.group_name}</Link>
+          <Link className="chat-link" to={link + chat.chat_group_id}>{chat.group_name}</Link>
         </div>
       ))}
     </div>

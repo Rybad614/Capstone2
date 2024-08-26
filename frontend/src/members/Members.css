@@ -1,0 +1,75 @@
+/* Members Navigation Styles */
+@media (min-width: 1440px) {
+  .members {
+    background-color: #444;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    top: 53px;
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    max-width: 200px;
+    height: 100vh;
+    /* Full height minus the navigation bar */
+    overflow: hidden;
+    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.3);
+    z-index: 900;
+  }
+
+  .members li {
+    margin: 10px 0;
+    list-style: none;
+    border-radius: 5px;
+    width: 110%;
+    overflow: hidden;
+    background-color: #3c49ff;
+  }
+
+  .members .nav-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .members .nav-link:hover {
+    color: #e6e6e6;
+  }
+}
+@media (max-width: 1439px) {
+  .members {
+    background-color: #444;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    top: 53px;
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    max-width: 200px;
+    height: 100vh;
+    /* Full height minus the navigation bar */
+    overflow: hidden;
+    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.3);
+    z-index: 900;
+  }
+
+  .members li {
+    margin: 10px 0;
+    list-style: none;
+    border-radius: 5px;
+    width: 110%;
+    overflow: hidden;
+    background-color: #3c49ff;
+  }
+
+  .members .nav-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .members .nav-link:hover {
+    color: #e6e6e6;
+  }
+}

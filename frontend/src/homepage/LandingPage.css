@@ -1,20 +1,154 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
+/* LandingPage.css */
+
+@media (max-width: 1439px) {
+  .App {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  .LandingPage {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .wrapper {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .mobile-Quote {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #0000008f;
+  }
+  .desktop-Quote {
+    display: none;
+  }
+
+  .Signup {
+    font-size: 0.9rem;
+    color: #1f1f1f;
+  }
+
+  .SignupLink {
+    color: #1f1f1f;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .SignupLink:hover {
+    color: #3c49ff;
+  }
+
+  footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #aaaaaa;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .visible {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
-.LandingPage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
+@media (min-width: 1440px) {
+  .LandingPage {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
 
-.wrapper {
-  width: 450px;
-  border-radius: 1px;
-  padding: 50px 40px 20px 40px;
-  text-align: center;
+  .wrapper {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .mobile-Quote {
+    display: none;
+  }
+  
+  .desktop-Quote {
+    position: absolute;
+    top: 20%;
+    right: 55%;
+    bottom: 80%;
+    left: 35%;
+    font-style: italic;
+    font-size: 2rem;
+    color: #0000008f;
+  }
+
+  .Signup {
+    font-size: 0.9rem;
+    color: #1f1f1f;
+  }
+
+  .SignupLink {
+    color: #1f1f1f;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .SignupLink:hover {
+    color: #3c49ff;
+  }
+
+  .mobile-footer {
+    display: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .visible {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

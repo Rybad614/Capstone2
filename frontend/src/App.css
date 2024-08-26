@@ -1,0 +1,236 @@
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+  body {
+    background-color: red;
+  }
+}
+
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+  /* Reset */
+  body,
+  h1,
+  h2,
+  h3,
+  p,
+  ul,
+  li,
+  a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+
+  #root {
+    padding: 0;
+    height: 100%;
+    scrollbar-color: transparent transparent;
+  }
+
+  .App {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  body {
+    background-color: rgb(222, 235, 255);
+  }
+
+  .AppFooter {
+    display: none;
+  }
+
+  *,
+  *:before,
+  *:after {
+    padding: 1px;
+    box-sizing: inherit;
+  }
+
+  a {
+    color: #112d4e;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Reset */
+  body,
+  h1,
+  h2,
+  h3,
+  p,
+  ul,
+  li,
+  a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+
+  #root {
+    padding: 0;
+    height: 100%;
+    scrollbar-color: transparent transparent;
+  }
+
+  .App {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  body {
+    background-color: rgb(232, 240, 255);
+  }
+
+  .AppFooter {
+    display: none;
+  }
+
+  *,
+  *:before,
+  *:after {
+    padding: 3px;
+    box-sizing: inherit;
+  }
+
+  a {
+    color: #112d4e;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 1025px) and (max-width: 1439px) {
+  /* Reset */
+  body,
+  h1,
+  h2,
+  h3,
+  p,
+  ul,
+  li,
+  a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+
+  #root {
+    padding: 0;
+    height: 100%;
+    scrollbar-color: transparent transparent;
+  }
+
+  .App {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  body {
+    background-color: rgb(242, 245, 255);
+  }
+
+  .AppFooter {
+    display: none;
+  }
+
+  *,
+  *:before,
+  *:after {
+    padding: 3px;
+    box-sizing: inherit;
+  }
+
+  a {
+    color: #112d4e;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1440px) {
+
+  /* Reset */
+  body,
+  h1,
+  h2,
+  h3,
+  p,
+  ul,
+  li,
+  a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+
+  #root {
+    padding: 0;
+    height: 100%;
+    scrollbar-color: transparent transparent;
+  }
+
+  .App {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .AppFooter {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #aaaaaa;
+  }
+
+  body {
+    font-family: sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    overscroll-behavior: none;
+    background-color: rgb(242, 245, 255);
+  }
+
+  a {
+    color: #112d4e;
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+/* Media Query for Large screens */

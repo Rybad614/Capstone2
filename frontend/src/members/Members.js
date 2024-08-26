@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 import AddMembers from "./AddMembers";
 
+import './Members.css';
+
 function Members() {
   const { currentUser, associatedUsers } = useContext(UserContext);
   console.debug("Members", "associatedUsers=", associatedUsers);
@@ -35,7 +37,7 @@ function Members() {
 
   return(
     <>
-      <nav className="Navigation navbar navbar-expand-sm">
+      <nav className="navbar navbar-expand-sm">
         Team Members:
         <ul className="navbar-nav">
           <AddMembers />

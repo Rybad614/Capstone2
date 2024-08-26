@@ -1,12 +1,14 @@
 import React from "react";
 import CalendarVis from "../calendar/Calendar";
 import Members from "../members/Members";
-import Groupchats from "./Groupchats"
+import Groupchats from "./Groupchats";
+
+import './Homepage.css';
 
 function Homepage() {
 
   return(
-    <div>
+    <main>
       <div className="members">
         <Members />
       </div>
@@ -16,7 +18,7 @@ function Homepage() {
       <div className="groupchat">
         <Groupchats />
       </div>
-    </div>
+    </main>
   )
 }
 

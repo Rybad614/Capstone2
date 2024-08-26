@@ -1,38 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "../auth/LoginForm";
-import "./LandingPage.css"
+import SignupForm from "../auth/SignupForm";
+import "./LandingPage.css";
 
-function LandingPage({ login }) {
+function LandingPage({ login, signup }) {
+  const [showLogin, setShowLogin] = useState(true);
+
+  const toggleForm = () => {
+    setShowLogin(!showLogin);
+  };
 
   return (
-    <div className="LandingPage">
-      <div className="wrapper">
-        <section className="card">
-          <main className="card-body">
-            <article>
-              <div className="card-title text-center fs-1" role="button">
-                PairedPreneurs
-              </div>
-              <LoginForm login={login}/>
-              <div className="card-footer">
-                <span className="Signup">
-                  <p>Don't have an account?</p>
-                  <Link to="/signup">
-                    <span className="SignupLink">
-                      Sign up
-                    </span>
-                  </Link>
-                </span>
-              </div>
+    <>
+      <div className="LandingPage">
+        <div className="wrapper">
+          <main className="card">
+            <article className="card-body">
+              <section>
+                <div
+                  className="card-title text-center fs-1"
+                  role="button"
+                  onClick={toggleForm}
+                >
+                  PairedPreneurs
+                </div>
+                <div className={showLogin ? "visible" : "hidden"}>
+                  <LoginForm login={login} />
+                </div>
+                <div className={!showLogin ? "visible" : "hidden"}>
+                  <SignupForm signup={signup} />
+                </div>
+                <div className="mobile-Quote">
+                  "GET Connected. STAY Connected."
+                </div>
+                <div className="card-footer">
+                  <span className="Signup">
+                    {showLogin ? (
+                      <>
+                        <p>
+                          Don't have an account?
+                          <span className="SignupLink" onClick={toggleForm}>
+                            Sign up
+                          </span>
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p>
+                          Already have an account?
+                          <span className="SignupLink" onClick={toggleForm}>
+                            Login
+                          </span>
+                        </p>
+                      </>
+                    )}
+                  </span>
+                </div>
+              </section>
             </article>
           </main>
-          <footer>
-            
+          <footer className="mobile-footer">
+            <p>© 2024 PairedPreneurs. All rights reserved.</p>
+            <p>
+              <Link to="#">Privacy Policy</Link> |{" "}
+              <Link to="#">Terms of Service</Link>
+            </p>
           </footer>
-        </section>
+        </div>
       </div>
-    </div>
+      <section>
+        <div className="desktop-Quote">
+        "GET Connected. STAY Connected."
+        </div>
+      </section>
+    </>
   );
 }
 

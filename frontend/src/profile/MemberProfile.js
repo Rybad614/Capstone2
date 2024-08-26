@@ -3,7 +3,7 @@ import React from "react";
 function MemberProfile({ user }) {
   console.log("THIS", user)
   return(
-    <div>
+    <div className="profile-title">
       <h1>{user.email}'s Page Coming Soon</h1>
     </div>
   )

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert";
-
+import "../auth/Form.css";
 
 function LoginForm({ login }) {
   const history = useHistory();
@@ -37,15 +37,15 @@ function LoginForm({ login }) {
 
   return (
     <>
-      <main className="container">
-        <div className="card">
+      <div className="container">
+        <div className="login-card">
           <article className="card-body">
             <form onSubmit={handleSubmit}>
               <section className="form-group">
-                <label>Email</label>
                 <input 
                     name="email"
                     className="form-control"
+                    placeholder="email"
                     value={formData.email}
                     onChange={handleChange}
                     autoComplete="email"
@@ -53,11 +53,11 @@ function LoginForm({ login }) {
                 />
               </section>
               <section className="form-group">
-                <label>Password</label>
                 <input 
                     type="password"
                     name="password"
                     className="form-control"
+                    placeholder="password"
                     value={formData.password}
                     onChange={handleChange}
                     autoComplete="current-password"
@@ -79,7 +79,7 @@ function LoginForm({ login }) {
             </form>
           </article>
         </div>
-      </main>
+      </div>
     </>
   );
 }

@@ -10,6 +10,9 @@ import Navigation from "./routes-nav/Navigation";
 import Routes from "./routes-nav/Routes";
 import SignupForm from "./auth/SignupForm";
 import NonUser from "./routes-nav/NonUser";
+import AppFooter from "./AppFooter.js";
+
+import "./App.css"
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = "otf-token";
@@ -37,7 +40,7 @@ function App() {
 
   useEffect(function loadUserInfo() {
     console.debug("App useEffect loadUserInfo", "token=", token);
-    
+
     if (location.state && location.state.refresh) {
       window.location.reload();
     }
@@ -72,7 +75,7 @@ function App() {
     };
 
     async function getCalendars(user_id) {
-      try{
+      try {
         let userCalendars = await OtfApi.getUserCalendars(user_id);
         setUserCalendars(userCalendars);
         getEvents(userCalendars.calendar[0].user_id, userCalendars.calendar[0].calendar_id);
@@ -84,7 +87,7 @@ function App() {
     };
 
     async function getEvents(user_id, calendar_id) {
-      try{
+      try {
         let userEvents = await OtfApi.getUserEvents(user_id, calendar_id);
         setUserEvents(userEvents.event);
       } catch (err) {
@@ -153,7 +156,7 @@ function App() {
       return { success: false, err };
     }
   }
-  
+
   async function addToParticipants(memberData) {
     try {
       let addMember = await OtfApi.addToParticipants(memberData);
@@ -166,16 +169,20 @@ function App() {
   }
 
   function renderNonUserView() {
-    return(<div className="App">
-     <NonUser login={login} />
-     <Route exact path="/signup">
-      <SignupForm signup={signup} />
-     </Route>
-    </div>
+    return (
+      <>
+        <div className="App">
+          <NonUser login={login} />
+          <Route exact path="/signup">
+            <SignupForm signup={signup} />
+          </Route>
+        </div>
+        <AppFooter />
+      </>
     );
   }
   function renderUserView() {
-    return(
+    return (
       <UserContext.Provider
         value={{
           currentUser,
@@ -192,10 +199,10 @@ function App() {
         <div className="App">
           <Navigation logout={logout} />
           <Routes
-          login={login}
-          signup={signup}
-          addMember={addMember}
-          addToParticipants={addToParticipants}
+            login={login}
+            signup={signup}
+            addMember={addMember}
+            addToParticipants={addToParticipants}
           />
         </div>
       </UserContext.Provider>
@@ -204,11 +211,11 @@ function App() {
 
   if (!infoLoaded) return "Loading...";
 
-  return(
-    <div>
+  return (
+    <>
       {(!currentUser) ? renderNonUserView() : renderUserView()}
-    </div>
-    );
+    </>
+  );
 }
 
 export default App;

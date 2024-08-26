@@ -22,7 +22,7 @@ function Routes({ login, signup, addMember, addToParticipants, chats }) {
   );
 
   return (
-    <div>
+    <>
       <Switch>
 
         <Route exact path="/">
@@ -55,7 +55,7 @@ function Routes({ login, signup, addMember, addToParticipants, chats }) {
 
         <Redirect to="/" />
       </Switch>
-    </div>
+    </>
   );
 }
 

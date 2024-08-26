@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import 'react-calendar/dist/Calendar.css';
 
 import DisplayEvents from "./DisplayEvents";
 import OtfApi from "../api/api";
@@ -104,22 +103,25 @@ function EventForm({ eventPopup, showEventPopup, showAddEvent, setShowAddEvent, 
 
   return (
     <>
-      <DisplayEvents
-        events={events}
-        handleEditEvent={handleEditEvent}
-        handleDeleteEvent={handleDeleteEvent}
-      />
-      <button type="button" onClick={handleAddEvent}>
-        ADD EVENT
-      </button>
-
+      <div className="card evt">
+        <DisplayEvents
+          events={events}
+          handleEditEvent={handleEditEvent}
+          handleDeleteEvent={handleDeleteEvent}
+        />
+        <button type="button" className="btn btn-primary" onClick={handleAddEvent}>
+          ADD EVENT
+        </button>
+      </div>
       {(showAddEvent === true)
-        ? <AddEvent
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          formData={formData}
-          editingEvent={editingEvent}
-         />
+        ? <div className="card add-evt">
+          <AddEvent
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            formData={formData}
+            editingEvent={editingEvent}
+          />
+        </div>
         : null
       }
     </>

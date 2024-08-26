@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 
+import  "./Navigation.css";
+
 
 function Navigation({ logout }) {
   const { currentUser } = useContext(UserContext);
@@ -26,14 +28,13 @@ function Navigation({ logout }) {
   }
 
   return (
-    <div>
-      <nav className="Navigation navbar navbar-expand-sm">
+    <div className="Navigation">
+      <nav className="navbar navbar-expand-sm">
         <Link className="navbar-brand" to="/">
           PairedPreneurs
         </Link>
         {loggedInNav()} 
       </nav>
-      <hr/>
     </div>
   );
 }

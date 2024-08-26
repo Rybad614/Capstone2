@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react';
 import Calendar from 'react-calendar';
 import EventForm from './EventForm';
+import NotificationForm from './NotificationForm';
 import UserContext from '../auth/UserContext';
+
+import './Calendar.css';
 
 export default function CalendarVis() {
   const [selectedDay, setSelectedDay] = useState(new Date());
@@ -43,6 +46,8 @@ export default function CalendarVis() {
           calendarType='gregory'
           minDate={new Date()}
         />
+      </div>
+        <NotificationForm />
         {(showEventPopup === true)
           ? <EventForm
             eventPopup={eventPopup}
@@ -54,7 +59,6 @@ export default function CalendarVis() {
           />
           : null
         }
-      </div>
     </div>
   );
 }

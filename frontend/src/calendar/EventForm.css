@@ -1,0 +1,102 @@
+@media (min-width: 1440px) {
+  .evt {
+    position: absolute;
+    top: 45.5%;
+    left: 5%;
+    max-height: 44vh;
+    overflow: auto;
+  }
+
+  .event {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    border-bottom: 1px solid;
+  }
+
+  .evt-card-title {
+    font-size: 2rem;
+  font-weight: bold;
+  color: #1f1f1f;
+  }
+
+  .evt-id {
+    font-size: 0.5rem;
+    color: #aaaaaa;
+  }
+
+  .event-date-wrapper {
+    display: grid;
+    justify-content: stretch;
+    justify-items: center;
+  }
+
+  .form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #aaaaaa;
+  }
+
+  .evt-form-group {
+    padding: 5px 0;
+  }
+
+  .add-evt {
+    position: absolute;
+    top: 45.5%;
+    left: 33%;
+    max-height: 44vh;
+    overflow: auto;
+  }
+}
+@media (max-width: 1439px) {
+  .evt {
+    position: absolute;
+    top: 45.5%;
+    left: 5%;
+    max-height: 44vh;
+    overflow: auto;
+  }
+
+  .event {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    border-bottom: 1px solid;
+  }
+
+  .evt-card-title {
+    font-size: 2rem;
+  font-weight: bold;
+  color: #1f1f1f;
+  }
+
+  .evt-id {
+    font-size: 0.5rem;
+    color: #aaaaaa;
+  }
+
+  .event-date-wrapper {
+    display: grid;
+    justify-content: stretch;
+    justify-items: center;
+  }
+
+  .form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #aaaaaa;
+  }
+
+  .evt-form-group {
+    padding: 5px 0;
+  }
+
+  .add-evt {
+    position: absolute;
+    top: 45.5%;
+    left: 33%;
+    max-height: 44vh;
+    overflow: auto;
+  }
+}

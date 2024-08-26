@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import MemberProfile from "./MemberProfile";
 import UserContext from "../auth/UserContext";
 
+import './Profile.css'
+
 function Profile({ users }) {
   const { currentUser } = useContext(UserContext);
   const { email } = useParams();
@@ -16,7 +18,7 @@ function Profile({ users }) {
     return <MemberProfile user={currUser} />;
   }
   return(
-    <div>
+    <div className="profile-title">
       <h1>(YOUR) Profile Page Coming Soon</h1>
     </div>
   )

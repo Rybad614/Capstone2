@@ -1,0 +1,98 @@
+@media (min-width: 1440px) {
+
+  /* Add Member Page */
+  .add-member-page {
+    display: grid;
+    place-items: center;
+    height: 100dvh;
+    padding: 0 30%;
+  }
+
+  .add-member-wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: #9b9b9b5f;
+    box-shadow: 20px 0px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .add-member-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: black;
+  }
+
+  .add-member-header {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 30%;
+  }
+
+  #add-member-title {
+    font-size: 2rem;
+  }
+
+  .members-add {
+    display: flex;
+    padding: 5px 0;
+  }
+
+  .remove-btn {
+    padding: 5px;
+    border: none;
+    border-radius: 10%;
+    color: #fff;
+    background-color: red;
+  }
+}
+@media (max-width: 1439px) {
+
+  /* Add Member Page */
+  .add-member-page {
+    display: grid;
+    place-items: center;
+    height: 100dvh;
+    padding: 0 30%;
+  }
+
+  .add-member-wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: #9b9b9b5f;
+    box-shadow: 20px 0px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .add-member-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: black;
+  }
+
+  .add-member-header {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 30%;
+  }
+
+  #add-member-title {
+    font-size: 2rem;
+  }
+
+  .members-add {
+    display: flex;
+    padding: 5px 0;
+  }
+
+  .remove-btn {
+    padding: 5px;
+    border: none;
+    border-radius: 10%;
+    color: #fff;
+    background-color: red;
+  }
+}

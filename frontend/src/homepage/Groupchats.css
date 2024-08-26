@@ -1,0 +1,212 @@
+@media (min-width: 1440px) {
+
+  /* Homepage Groupchat VIEWS */
+  .groupchat {
+    background-color: #3c49ff;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    max-width: 200px;
+    overflow: hidden;
+    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.3);
+    z-index: 900;
+  }
+
+  .chat-link {
+    padding: 5px;
+    border-radius: 20px;
+    color: white;
+    background-color: black;
+  }
+
+  /* Groupchat Page */
+  .chat {
+    display: grid;
+    place-items: center;
+    height: 100dvh;
+    padding: 0 30%;
+  }
+
+  .chat-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 0 5em;
+    background-color: #9b9b9b5f;
+    box-shadow: 20px 0px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: black;
+  }
+
+  .chat-header {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 30%;
+  }
+
+  #chat-title {
+    font-size: 2rem;
+  }
+
+  .chat-messages {
+    padding: 20px 80px;
+    border-radius: 20%;
+    color: #fdfdfd;
+    background-color: rgba(255, 255, 255, 0.629);
+    overflow: auto;
+    scroll-behavior: smooth;
+  }
+
+  .message {
+    padding: 50px;
+    border-radius: 20%;
+    box-shadow: 2px 0px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .blue-bg {
+    background-color: #218aff;
+  }
+  
+  .gray-bg {
+    background-color: #d8d8d8;
+  }
+
+  .message-sender {
+    font-size: 1em;
+    font-weight: bold;
+    color: #aeb9cc;
+  }
+
+  .message-text {
+    font-size: 15px;
+  }
+
+  .message-timestamp {
+    font-size: 0.8em;
+    color: #aaa;
+  }
+
+  .send-button {
+    padding: 10px 100px;
+  }
+
+  .send-button:hover {
+    cursor: pointer;
+    background-color:#3c49ff71;
+  }
+}
+@media (max-width: 1439px) {
+
+  /* Homepage Groupchat VIEWS */
+  .groupchat {
+    background-color: #3c49ff;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    max-width: 200px;
+    overflow: hidden;
+    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.3);
+    z-index: 900;
+  }
+
+  .chat-link {
+    padding: 5px;
+    border-radius: 20px;
+    color: white;
+    background-color: black;
+  }
+
+  /* Groupchat Page */
+  .chat {
+    display: grid;
+    place-items: center;
+    height: 100dvh;
+    padding: 0 30%;
+  }
+
+  .chat-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 0 5em;
+    background-color: #9b9b9b5f;
+    box-shadow: 20px 0px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    color: black;
+  }
+
+  .chat-header {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 30%;
+  }
+
+  #chat-title {
+    font-size: 2rem;
+  }
+
+  .chat-messages {
+    padding: 20px 80px;
+    border-radius: 20%;
+    color: #fdfdfd;
+    background-color: rgba(255, 255, 255, 0.629);
+    overflow: auto;
+    scroll-behavior: smooth;
+  }
+
+  .message {
+    padding: 50px;
+    border-radius: 20%;
+    box-shadow: 2px 0px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .blue-bg {
+    background-color: #218aff;
+  }
+  
+  .gray-bg {
+    background-color: #d8d8d8;
+  }
+
+  .message-sender {
+    font-size: 1em;
+    font-weight: bold;
+    color: #aeb9cc;
+  }
+
+  .message-text {
+    font-size: 15px;
+  }
+
+  .message-timestamp {
+    font-size: 0.8em;
+    color: #aaa;
+  }
+
+  .send-button {
+    padding: 10px 100px;
+  }
+
+  .send-button:hover {
+    cursor: pointer;
+    background-color:#3c49ff71;
+  }
+}
