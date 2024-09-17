@@ -8,9 +8,29 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 
 const nylasCalendar = nylas.calendars;
 
+
+/**
+ * Functions for calendars.
+ * 
+ * 
+ * @method create --Make a new calendar.
+ * @method view --See calendars related to user.
+ * @method update --Modify a calendar.
+ * @method delete --Remove a calendar.
+ */
+
 class Calendar {
 
-  /** */
+  /** Creates a calendar (from data), update db, return new calendar data.
+   * 
+   * data should be:
+   * @augments name REQUIRED - How a user identifies a calendar.
+   * @augments description REQUIRED - The purpose of the need for a calendar.
+   * @augments user_grant REQUIRED - Allows a user the feature to update calendars outside of the app, via GoogleCalendar, iCalendar.
+   * @augments user_id REQUIRED - specifies the creator of the calendar. MUST BE ADMIN.
+   * 
+   * @returns {Object} Data for calendar.
+  */
   static async create({ name, description, user_grant, user_id }) {
     try {
       const calendar = await nylasCalendar.create({
@@ -44,7 +64,11 @@ class Calendar {
 
     return createCalendar;
   }
-  /** */
+  /** Given a users ID, return calendar data to be displayed.
+   * 
+   * @returns {Array|Object} Any calendar associated to user.
+   * 
+  */
   static async view(user_id) {
 
     const user_grant = await db.query(
@@ -77,7 +101,18 @@ class Calendar {
 
     return allCalendars;
   }
-  /** */
+  /** @todo Update calendar data with `data`.
+   * 
+   * This is a "partial update" --- it's fine if data doesn't contain all the
+   * fields; this only changes provided ones.
+   * 
+   * @param {Number} user_id specifies admin user.
+   * @param {Number} calendar_id specifies calendar.
+   * @param {Object} data consist of NAME and DESCRIPTION.
+   *  @arg {String} name - name of calendar.
+   *  @arg {String} description - describes calendar.
+   * 
+  */
   static async update(user_id, calendar_id, data) {
     const user_grant = await db.query(
       `SELECT user_grant
@@ -128,7 +163,13 @@ class Calendar {
     if (!calendar) throw new NotFoundError(`calendar at ${calendar_id} does not exist.`);
     return calendar;
   }
-  /** */
+  /** @todo Given a users ID and a specified calendar ID, remove calendar data.
+   * 
+   * @param {Number} user_id specifies admin user.
+   * @param {Number} calendar_id specifies calendar.
+   *  
+   * @throws NotFoundError - calendar cannot be found.
+  */
   static async delete(user_id, calendar_id) {
     const user_grant = await db.query(
       `SELECT user_grant

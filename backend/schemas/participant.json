@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Participants",
+  "type": "object",
+  "properties": {
+    "participant_id": {
+      "type": "integer",
+      "description": "The unique identifier for the participant."
+    },
+    "calendar_id": {
+      "type": "integer",
+      "description": "The identifier of the calendar associated with the participant."
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "The identifier of the user who is a participant."
+    },
+    "chat_group_id": {
+      "type": "integer",
+      "description": "The identifier of the chat group associated with the participant."
+    }
+  },
+  "required": ["participant_id", "calendar_id", "user_id", "chat_group_id"],
+  "additionalProperties": false
+}

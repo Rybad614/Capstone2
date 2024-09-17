@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Users",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "integer",
+      "description": "Unique identifier for each user"
+    },
+    "user_type": {
+      "type": "string",
+      "enum": ["admin", "member"],
+      "description": "Type of user (admin or member)"
+    },
+    "username": {
+      "type": "string",
+      "description": "Username of the user",
+      "minLength": 3,
+      "maxLength": 100
+    },
+    "first_name": {
+      "type": "string",
+      "description": "First name of the user",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "password": {
+      "type": "string",
+      "description": "Password for the user's account",
+      "minLength": 8
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the user"
+    },
+    "user_grant": {
+      "type": "string",
+      "description": "Grant identifier for admin users",
+      "pattern": "^[a-f0-9-]{36}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the user was created"
+    }
+  },
+  "required": ["user_id", "user_type", "password", "email", "created_at"],
+  "additionalProperties": false,
+  "anyOf": [
+    {
+      "required": ["username", "user_grant"]
+    },
+    {
+      "required": ["first_name"]
+    }
+  ]
+}

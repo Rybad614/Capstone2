@@ -8,16 +8,33 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 
 const nylasEvent = nylas.events;
 
-
-// FOR VALIDATING A DATE:
-
-// const daysInMonth = (year, month) => new Date(year, month, 0).getDate();
-
-// daysInMonth(2020, 12); // 31
-// daysInMonth(2024, 2); // 29
+/**
+ * Related functions for events.
+ * 
+ * @method create --Make a new event.
+ * @method get --See events related to user.
+ * @method update --Modify a event.
+ * @method delete --Remove a event.
+ */
 
 class Event {
-  /** */
+  /** 
+   * Creates event with provided data, updates db, return new event data.
+   * 
+   * @augments title REQUIRED - How a user can identify an event.
+   * @augments condition REQUIRED - Helps user with expectations for event (Either Indoor or Outdoor FOR NOW).
+   * @augments activities REQUIRED - Helps user with expectations for event.
+   * @augments attendance REQUIRED - Helps user with expectations for event (Either Voluntary or Mandatory FOR NOW).
+   * @augments announcements REQUIRED - Helps user with expectations for event.
+   * @augments day REQUIRED - Helps user with expectations for event. (EX. 1, 20, 31)
+   * @augments month REQUIRED - Helps user with expectations for event. (EX. January, June, December)
+   * @augments year REQUIRED - Helps user with expectations for event. (EX. 2024, 2025, 2026)
+   * @augments from REQUIRED - Helps user with expectations for event. (EX. 02:00, 15:00, 23:45)
+   * @augments until REQUIRED - Helps user with expectations for event. (EX. 05:00, 10:00, 12:30)
+   * @augments calendar_id REQUIRED - Modify the right calendar.
+   * @augments user_id REQUIRED - Associated admin user.
+   * @augments e_token REQUIRED - Event identifier.
+  */
   static async create({ title, condition, activities, attendance, announcements, day, month, year, from, until, calendar_id, user_id, e_token }) {
     const EVENT = [
       new Date(`${day} ${month} ${year} ${from}:00 UTC-04:00`),
